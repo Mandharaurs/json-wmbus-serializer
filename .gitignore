@@ -1,0 +1,10 @@
+# Compiled binaries
+*.exe
+*.out
+
+# Editor settings
+.vscode/
+
+# Build artifacts
+*.o
+*.obj
