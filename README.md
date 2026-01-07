@@ -166,7 +166,7 @@ Worst-case estimation:
 - MAX_DEVICES = 4
 - MAX_DATA_POINTS = 8
 
-In the worst case, the generated JSON size is approximately 1.5 KB.
+In the worst case, the generated JSON size is approximately 1-1.5 KB.
 
 For safety, the example application uses a 2 KB output buffer, which is sufficient for all supported configurations.
 
