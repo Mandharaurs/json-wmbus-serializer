@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project implements a lightweight, embedded-friendly C library that serializes structured meter data into a strictly defined JSON format.
+This project implements a lightweight, embedded-friendly C library that serializes structured meter data into a strictly predefined JSON format.
 
 It represents a realistic firmware component in a smart-meter / w-M-Bus data pipeline:
 
@@ -33,7 +33,7 @@ w-M-Bus radio communication, OMS parsing, encryption, and real meter interaction
 ## Chosen Platform & Programming Language
 
 ### Programming Language
-C (ISO C)
+C (ISO C99)
 
 Chosen for:
 - Deterministic behavior
@@ -46,7 +46,7 @@ Developed and tested using MinGW64 (GCC) on Windows.
 
 Justification:
 - The code uses no OS-specific APIs
-- No dynamic memory allocation (malloc)
+- No dynamic memory allocation (malloc / free)
 - No external dependencies
 - Fully portable to embedded platforms such as:
   - STM32CubeIDE (STM32)
@@ -95,6 +95,14 @@ API behavior:
   - JSON_OK
   - JSON_ERR_BUFFER_TOO_SMALL
   - JSON_ERR_INVALID_ARGUMENT
+
+  ### Error Codes
+
+| Code | Meaning |
+|-----|--------|
+| JSON_OK | Serialization successful |
+| JSON_ERR_BUFFER_TOO_SMALL | Output buffer is insufficient |
+| JSON_ERR_INVALID_ARGUMENT | Invalid pointer or data count |
 
 ---
 
@@ -172,6 +180,10 @@ For safety, the example application uses a 2 KB output buffer, which is sufficie
 
 If the output buffer is too small, the serializer returns JSON_ERR_BUFFER_TOO_SMALL and writes no partial data.
 
+Memory footprint:
+- Stack usage: ~200 bytes (worst case)
+- Heap usage: 0 bytes
+
 ---
 
 ## Design Decisions & Assumptions
@@ -202,16 +214,3 @@ If the output buffer is too small, the serializer returns JSON_ERR_BUFFER_TOO_SM
 - Integration with UART, MQTT, or HTTP layers (outside the core library)
 
 ---
-
-## License
-
-This project is provided for educational and evaluation purposes.
-No license restrictions are applied.
-
----
-
-Final status:
-- All assignment requirements fulfilled
-- Embedded-safe and deterministic
-- Production-style documentation
-- Interview-ready implementation
