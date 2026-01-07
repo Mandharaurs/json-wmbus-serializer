@@ -8,7 +8,7 @@
 #define MAX_DATA_POINTS  8
 
 /* Single meter data point */
-typedef struct
+typedef struct 
 {
     const char *timestamp;
     const char *meter_datetime;
@@ -28,7 +28,7 @@ typedef struct
 } DeviceReading;
 
 /* Gateway-level data */
-typedef struct
+typedef struct 
 {
     const char     *gateway_id;
     const char     *date;
@@ -40,22 +40,21 @@ typedef struct
 } GatewayData;
 
 /* Error codes */
-typedef enum
+typedef enum 
 {
     JSON_OK = 0,
     JSON_ERR_BUFFER_TOO_SMALL,
     JSON_ERR_INVALID_ARGUMENT
 } JsonResult;
 
-/**
- * @brief Serialize gateway data into JSON
+/*
+ * Serializes GatewayData into JSON.
  *
- * @param input         Pointer to populated GatewayData
- * @param output        Output buffer provided by caller
- * @param output_size   Size of output buffer in bytes
- * @param bytes_written Optional pointer to receive number of bytes written
+ * Caller must ensure all strings are valid, null-terminated,
+ * and remain valid for the duration of serialization.
  *
- * @return JsonResult
+ * - output buffer must be provided by caller
+ * - no dynamic allocation
  */
 JsonResult serialize_to_json(
     const GatewayData *input,
@@ -64,4 +63,4 @@ JsonResult serialize_to_json(
     size_t            *bytes_written
 );
 
-#endif /* JSON_SERIALIZER_H */
+#endif

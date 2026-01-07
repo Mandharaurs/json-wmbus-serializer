@@ -96,14 +96,6 @@ API behavior:
   - JSON_ERR_BUFFER_TOO_SMALL
   - JSON_ERR_INVALID_ARGUMENT
 
-  ### Error Codes
-
-| Code | Meaning |
-|-----|--------|
-| JSON_OK | Serialization successful |
-| JSON_ERR_BUFFER_TOO_SMALL | Output buffer is insufficient |
-| JSON_ERR_INVALID_ARGUMENT | Invalid pointer or data count |
-
 ---
 
 ## Mandatory JSON Output Format
@@ -179,10 +171,6 @@ In the worst case, the generated JSON size is approximately 1.5 KB.
 For safety, the example application uses a 2 KB output buffer, which is sufficient for all supported configurations.
 
 If the output buffer is too small, the serializer returns JSON_ERR_BUFFER_TOO_SMALL and writes no partial data.
-
-Memory footprint:
-- Stack usage: ~200 bytes (worst case)
-- Heap usage: 0 bytes
 
 ---
 
